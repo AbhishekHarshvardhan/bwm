@@ -1,0 +1,27 @@
+<ng-container *ngIf="rental">
+  <p>{{ rental.id }}</p>
+  <p>{{ rental.title }}</p>
+  <p>{{ rental.category }}</p>
+  <p>{{ rental.city }}</p>
+  <p>{{ rental.bedroom }}</p>
+  <p>{{ rental.dailyRate }}</p>
+  <p>{{ rental.description }}</p>
+  <p>{{ rental.street }}</p>
+  <p>{{ rental.shared }}</p>
+  <p>{{ rental.image }}</p>
+  <p>{{ rental.createdAt }}</p>
+</ng-container>
+
+<ng-container *ngIf="!rental">
+  <div class="alert alert-dark" role="alert">
+    <div class="alert-heading"><strong>Rental</strong> no longer exist!</div>
+    <div class="lead">Please try again later.</div>
+
+    <a
+      [routerLink]="['/rentals']"
+      routerLinkActive="router-link-active"
+      class="mb-0"
+      >&larr; Go Back</a
+    >
+  </div>
+</ng-container>
