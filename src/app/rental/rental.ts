@@ -11,3 +11,15 @@ export interface Rental {
   shared?: boolean;
   createdAt?: string;
 }
+
+id;
+title;
+city;
+street;
+category;
+image;
+bedroom;
+description;
+dailyRate;
+shared;
+createdAt;
