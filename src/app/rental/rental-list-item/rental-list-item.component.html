@@ -1,9 +1,5 @@
-<div
-  class="card"
-  [routerLink]="['/rentals/' + rental.id]"
-  routerLinkActive="router-link-active"
->
-  <img class="card-img-top" src="{{rental.image}}" alt="Card image cap" />
+<div class="card">
+  <img class="card-img-top" src="{{ rental.image }}" alt="Card image cap" />
   <div class="card-body">
     <h5 class="card-title">{{ rental.category }} - {{ rental.city }}</h5>
 
@@ -14,6 +10,11 @@
         >${{ rental.dailyRate }} per night - Free cancelation</small
       >
     </p>
-    <a href="#" class="btn-link">More Info</a>
+    <a
+      [routerLink]="['/rentals/' + rental._id]"
+      routerLinkActive="router-link-active"
+      class="btn-link"
+      >More Info</a
+    >
   </div>
 </div>

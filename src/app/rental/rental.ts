@@ -1,5 +1,5 @@
 export interface Rental {
-  id?: string;
+  _id?: string;
   title?: string;
   city?: string;
   street?: string;
@@ -11,15 +11,3 @@ export interface Rental {
   shared?: boolean;
   createdAt?: string;
 }
-
-id;
-title;
-city;
-street;
-category;
-image;
-bedroom;
-description;
-dailyRate;
-shared;
-createdAt;
