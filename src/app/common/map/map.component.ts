@@ -22,7 +22,7 @@ export class MapComponent implements OnInit {
         this.lng = coordinates.lng;
         this.ref.detectChanges();
       },
-      error => {
+      () => {
         this.isLocationError = true;
       }
     );
