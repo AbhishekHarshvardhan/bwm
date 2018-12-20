@@ -10,7 +10,7 @@ import { Rental } from "../rental";
 })
 export class RentalDetailComponent implements OnInit {
   currentRentalId: string;
-  rental: Rental;
+  rental;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -25,6 +25,8 @@ export class RentalDetailComponent implements OnInit {
   }
 
   getRentalDetails(rentalId) {
-    this.rental = this.rentalService.getRental(rentalId);
+    this.rentalService
+      .getRental(rentalId)
+      .subscribe(rental => (this.rental = rental));
   }
 }

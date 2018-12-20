@@ -1,27 +1,40 @@
-<ng-container *ngIf="rental">
-  <p>{{ rental.id }}</p>
-  <p>{{ rental.title }}</p>
-  <p>{{ rental.category }}</p>
-  <p>{{ rental.city }}</p>
-  <p>{{ rental.bedroom }}</p>
-  <p>{{ rental.dailyRate }}</p>
-  <p>{{ rental.description }}</p>
-  <p>{{ rental.street }}</p>
-  <p>{{ rental.shared }}</p>
-  <p>{{ rental.image }}</p>
-  <p>{{ rental.createdAt }}</p>
-</ng-container>
-
-<ng-container *ngIf="!rental">
-  <div class="alert alert-dark" role="alert">
-    <div class="alert-heading"><strong>Rental</strong> no longer exist!</div>
-    <div class="lead">Please try again later.</div>
-
-    <a
-      [routerLink]="['/rentals']"
-      routerLinkActive="router-link-active"
-      class="mb-0"
-      >&larr; Go Back</a
-    >
+<div class="row " *ngIf="rental">
+  <div class="col-sm-6">
+    <img
+      class="img-fluid"
+      src="https://07f138315bb5e97f9e43-31068357019044cca7c8e84d92de0d99.ssl.cf3.rackcdn.com/1024x768/56587_11491_001.jpg"
+      alt=""
+    />
   </div>
-</ng-container>
+  <div class="col-sm-6">
+    <app-map [location]="rental.city + ', ' + rental.street"></app-map>
+  </div>
+</div>
+
+<div class="row mt-3" *ngIf="rental">
+  <div class="col-sm-6">
+    <div class="text-muted ">
+      {{ rental.shared ? "Shared" : "Whole" }} {{ rental.category | ucwords }}
+    </div>
+    <h5>{{ rental.title }}</h5>
+    <div class="font-weight-light">{{ rental.city | ucwords }}</div>
+    <div class="mt-1 text-muted">
+      {{ rental.bedroom }} bedrooms &nbsp; 8 guests&nbsp; 6 beds
+    </div>
+    <h6 class="mt-1 text-muted">{{ rental.description | ucwords }}</h6>
+  </div>
+  <div class="col-sm-6"></div>
+</div>
+
+<div class="row">
+  <div class="col-sm-8">
+    <hr />
+    <h5>Assets</h5>
+
+    <div class="row">
+      <div class="col-sm-6">cooling</div>
+      <div class="col-sm-6">working</div>
+    </div>
+  </div>
+  <div class="col-sm-4"></div>
+</div>
