@@ -12,7 +12,7 @@
 </div>
 
 <div class="row mt-3" *ngIf="rental">
-  <div class="col-sm-6">
+  <div class="col-sm-8">
     <div class="text-muted ">
       {{ rental.shared ? "Shared" : "Whole" }} {{ rental.category | ucwords }}
     </div>
@@ -21,20 +21,18 @@
     <div class="mt-1 text-muted">
       {{ rental.bedroom }} bedrooms &nbsp; 8 guests&nbsp; 6 beds
     </div>
-    <h6 class="mt-1 text-muted">{{ rental.description | ucwords }}</h6>
-  </div>
-  <div class="col-sm-6"></div>
-</div>
+    <h6 class="my-3 text-muted">{{ rental.description | ucwords }}</h6>
+    <div>
+      <hr />
+      <h5>Assets</h5>
 
-<div class="row">
-  <div class="col-sm-8">
-    <hr />
-    <h5>Assets</h5>
-
-    <div class="row">
-      <div class="col-sm-6">cooling</div>
-      <div class="col-sm-6">working</div>
+      <div class="row">
+        <div class="col-sm-6">cooling</div>
+        <div class="col-sm-6">working</div>
+      </div>
     </div>
   </div>
-  <div class="col-sm-4"></div>
+  <div class="col-sm-4">
+    <app-rental-detail-booking [rental]="rental"></app-rental-detail-booking>
+  </div>
 </div>

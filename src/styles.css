@@ -1,0 +1,7 @@
+.cursor-pointer {
+  cursor: pointer;
+}
+
+* {
+  border-radius: 0.15rem !important;
+}

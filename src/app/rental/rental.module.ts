@@ -8,6 +8,10 @@ import { Routes, RouterModule } from "@angular/router";
 import { HttpClientModule } from "@angular/common/http";
 import { NgPipesModule } from "ngx-pipes";
 import { MapModule } from "../common/map/map.module";
+import { AuthGuard } from "../auth/auth.guard";
+import { NgxDaterangepickerMd } from "ngx-daterangepicker-material";
+import { FormsModule } from "@angular/forms";
+import { RentalDetailBookingComponent } from "./rental-detail/rental-detail-booking/rental-detail-booking.component";
 
 const routes: Routes = [
   {
@@ -15,7 +19,7 @@ const routes: Routes = [
     component: RentalComponent,
     children: [
       { path: "", component: RentalListComponent },
-      { path: ":rentalId", component: RentalDetailComponent }
+      { path: ":rentalId", component: RentalDetailComponent, canActivate: [AuthGuard] }
     ]
   }
 ];
@@ -25,13 +29,16 @@ const routes: Routes = [
     RentalComponent,
     RentalListComponent,
     RentalListItemComponent,
-    RentalDetailComponent
+    RentalDetailComponent,
+    RentalDetailBookingComponent
   ],
   imports: [
     CommonModule,
+    FormsModule,
     HttpClientModule,
     NgPipesModule,
     MapModule,
+    NgxDaterangepickerMd,
     RouterModule.forChild(routes)
   ]
 })
