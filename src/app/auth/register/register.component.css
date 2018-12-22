@@ -1,0 +1,15 @@
+.img-fluid {
+  width: 100%;
+  max-height: 80vh;
+  object-fit: cover;
+}
+.welcome-text {
+  position: absolute;
+  color: wheat;
+  text-align: center;
+  background-color: rgba(128, 128, 128, 0.5);
+  padding: 100px 10px;
+}
+.welcome-text-relative {
+  position: relative;
+}

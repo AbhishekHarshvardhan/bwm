@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-md navbar-light bg-light ">
   <a
-    class="navbar-brand text-muted "
+    class="navbar-brand text-secondary"
     [routerLink]="['/']"
     routerLinkActive="router-link-active"
     >BookWithMe</a
@@ -18,19 +18,15 @@
   </button>
 
   <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-    <form class="form-inline my-2 my-lg-0">
-      <input
-        class="form-control mr-sm-2"
-        type="text"
-        placeholder="Search"
-        aria-label="Search"
-      />
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
-        Search
-      </button>
-    </form>
     <ul class="navbar-nav ml-auto">
-      <li class="nav-item dropdown">
+      <form class="form-inline my-2 my-lg-0 mr-sm-5">
+        <div class="input-group-sm mr-sm-2">
+          <input class="form-control " type="text" placeholder="Search" aria-label="Search" />
+        </div>
+
+        <button class="btn btn-outline-secondary btn-sm" type="submit">Search</button>
+      </form>
+      <!-- <li class="nav-item dropdown">
         <a
           class="nav-link dropdown-toggle"
           href="http://example.com"
@@ -45,9 +41,23 @@
           <a class="dropdown-item" href="#">Another action</a>
           <a class="dropdown-item" href="#">Something else here</a>
         </div>
+      </li> -->
+      <li class="nav-item" *ngIf="!authService.isAuthenticated()">
+        <a class="nav-link" [routerLink]="['/login']" routerLinkActive="router-link-active"
+          >Login</a
+        >
       </li>
-      <li class="nav-item"><a class="nav-link" href="#">Login</a></li>
-      <li class="nav-item"><a class="nav-link " href="#">Register</a></li>
+      <li class="nav-item" *ngIf="!authService.isAuthenticated()">
+        <a class="nav-link " [routerLink]="['/register']" routerLinkActive="router-link-active"
+          >Register</a
+        >
+      </li>
+      <li class="nav-item" *ngIf="authService.isAuthenticated()">
+        <a class="nav-link">{{ authService.getUsername() }}</a>
+      </li>
+      <li class="nav-item" *ngIf="authService.isAuthenticated()">
+        <a class="nav-link cursor-pointer" (click)="logOut()">Logout</a>
+      </li>
     </ul>
   </div>
 </nav>

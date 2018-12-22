@@ -11,12 +11,12 @@ exports.register = (req, res) => {
 
   if (!email || !password)
     return res.status(422).send({
-      error: [{ title: "Data missing!", detail: "Provide email and password!" }]
+      error: [{ title: "Data missing!", details: "Provide email and password!" }]
     });
 
   if (passwordConfirmation !== password)
     return res.status(422).send({
-      error: [{ title: "Invalid password!", detail: "Password is not same as confirmation!" }]
+      error: [{ title: "Invalid password!", details: "Password is not same as confirmation!" }]
     });
 
   //using shorthand as the key and value are same ie. email
@@ -24,7 +24,10 @@ exports.register = (req, res) => {
     if (error) return res.status(422).send({ error: normalizeMongooseError(error.errors) });
 
     if (existingUser)
-      return res.status(422).send({ "Invalid email": "User with email already exist" });
+      return res.status(422).send({
+        error: [{ title: "Invalid email!", details: "User with email already exist!" }]
+      });
+
     //using shorthand as the key and value are same ie. username,password and hashing password
     const user = new User({
       username,
@@ -44,17 +47,20 @@ exports.auth = (req, res) => {
 
   if (!email || !password)
     return res.status(422).send({
-      error: [{ title: "Data missing!", detail: "Provide email and password!" }]
+      error: [{ title: "Data missing!", details: "Provide email and password!" }]
     });
 
   User.findOne({ email }, (error, existingUser) => {
     if (error) return res.status(422).send({ error: normalizeMongooseError(error.errors) });
 
-    if (!existingUser) return res.status(422).send({ "Invalid email": "User does not exist" });
+    if (!existingUser)
+      return res
+        .status(422)
+        .send({ error: [{ title: "Invalid email!", details: "User does not exist!" }] });
 
     if (!bcrypt.compareSync(password, existingUser.password))
       return res.status(422).send({
-        error: [{ title: "Wrong data!", detail: "Wrong email or password!" }]
+        error: [{ title: "Wrong data!", details: "Wrong email or password!" }]
       });
 
     const token = jwt.sign(
@@ -85,6 +91,6 @@ parseToken = token => {
 
 notAuthorizedError = res => {
   return res.status(401).send({
-    error: [{ title: "Not Authorized!", detail: "You need to login to get access!" }]
+    error: [{ title: "Not Authorized!", details: "You need to login to get access!" }]
   });
 };

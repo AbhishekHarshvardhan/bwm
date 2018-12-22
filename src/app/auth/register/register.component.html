@@ -1,0 +1,85 @@
+<section id="register" class="container mt-4">
+  <div class="bwm-form">
+    <div class="row">
+      <div class="col-md-5 mt-2">
+        <h1 class="page-title">Register</h1>
+        <form #registerForm="ngForm">
+          <div class="form-group">
+            <label for="username">Username</label>
+            <input
+              name="username"
+              [(ngModel)]="formData.username"
+              type="text"
+              class="form-control"
+              id="username"
+              minlength="4"
+              #username="ngModel"
+              required
+            />
+            <div
+              *ngIf="username.invalid && (username.dirty || username.touched)"
+              class="alert alert-danger"
+            >
+              <div *ngIf="username.errors">username is required.</div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input
+              name="email"
+              type="email"
+              [(ngModel)]="formData.email"
+              class="form-control"
+              id="email"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input
+              [(ngModel)]="formData.password"
+              name="password"
+              type="password"
+              class="form-control"
+              id="password"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="passwordConfirmation">Confirm Password</label>
+            <input
+              [(ngModel)]="formData.passwordConfirmation"
+              name="passwordConfirmation"
+              type="password"
+              class="form-control"
+              id="passwordConfirmation"
+              required
+            />
+          </div>
+          <button
+            [disabled]="!registerForm.valid"
+            type="submit"
+            (click)="register(registerForm)"
+            class="btn btn-secondary btn-block"
+          >
+            Submit
+          </button>
+          <div class="alert alert-danger mt-2" *ngIf="errors && errors.length > 0">
+            <div *ngFor="let error of errors">{{ error.details }}</div>
+          </div>
+        </form>
+      </div>
+      <div class="col-md-6 ml-auto ">
+        <div class="welcome-text-relative">
+          <h2 class="welcome-text">
+            As our member you have access to most awesome places in the world.
+          </h2>
+          <img class="img-fluid" src="../../../assets/img/register-image.jpg" alt="" />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
