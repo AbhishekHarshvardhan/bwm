@@ -26,12 +26,8 @@ const UserSchema = new Schema({
     max: [32, "Too long, max is 32 characters"],
     required: "Password is required"
   },
-  rentals: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: "Rental"
-    }
-  ]
+  rentals: [{ type: Schema.Types.ObjectId, ref: "Rental" }],
+  bookings: [{ type: Schema.Types.ObjectId, ref: "Booking" }]
 });
 
 module.exports = mongoose.model("User", UserSchema);

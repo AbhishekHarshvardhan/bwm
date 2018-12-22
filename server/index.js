@@ -8,6 +8,7 @@ const app = express();
 //including all the routes
 const rentalRoute = require("./routes/rentals");
 const userRoute = require("./routes/users");
+const bookingRoute = require("./routes/bookings");
 
 mongoose.connect(
   config.MONGO_URI,
@@ -20,6 +21,7 @@ app.use(bodyParser.json());
 //redirecting to the routes
 app.use("/api/v1/rentals", rentalRoute);
 app.use("/api/v1/users", userRoute);
+app.use("/api/v1/bookings", bookingRoute);
 
 const PORT = process.env.PORT || 3000;
 
